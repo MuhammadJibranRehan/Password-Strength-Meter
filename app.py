@@ -7,8 +7,8 @@ st.set_page_config(page_title="Password Strength Checker", page_icon=("🌘"), l
 # Custom CSS
 st.markdown("""
 <style>
-    .main {text-align: centre;}
-    .stTextInput {width: 100%; !important; margin: auto;}
+    .main {text-align: center;}
+    .stTextInput {width: 100%; margin: auto;}
     .stButton button {width: 100%; background-color: lightblue; color: black; font-size: 18px;}
     .stButton button:hover {background-color: lightgray; color: black;}
 </style>
@@ -42,7 +42,7 @@ def check_password_strength(password):
         feedback.append("❌ Password should include **at least one digit (0-9)**.")
 
     # Check if password contains a special character
-    if re.search(r"[!#@$%^&*]", password):
+    if re.search(r"[!#@$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?]", password):
         score += 1
     else:
         feedback.append("❌ Password should include **one special character (!#@$%^&*)**.")
@@ -64,8 +64,8 @@ def check_password_strength(password):
 # Input field for password
 password = st.text_input("Enter your password:", type="password", help="Ensure your password is strong 🔐")
 
-#Add a small spacing fix
-st.markdown("<style>div.stButton { margin-top: -10px; }</style>",unsafe_allow_html=True)
+# Add a small spacing fix
+st.markdown("<style>div.stButton { margin-top: -10px; }</style>", unsafe_allow_html=True)
 
 # Button to check password strength
 if st.button("Check Strength"):
